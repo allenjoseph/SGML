@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <head>
+        <title>SGML - INICIO</title>
+    </head>
+    <body>
+
+        <ui:composition template="./../templates/main.xhtml">
+            <ui:define name="navbar">
+                <div class="navbar navbar-fixed-top">
+                    <div class="navbar-inner">
+                        <div class="container">
+                            <a class="brand" href="#!">SGML</a>
+                            <button type="button" class="btn btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button> 
+                            <div class="nav-collapse collapse pull-right" style="height: 0px; ">
+                                <ul class="nav">
+                                    <li class="active">
+                                        <a href="#">INICIO</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">ALUMNOS</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">EGRESADOS</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">EMPRESAS</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">CONTACTO</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">ACERCA DE</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+
+            <ui:define name="container">
+                <div class="container-fluid">
+                    <div class="row-fluid">
+                        <div class="span12">
+                            PAGINA DE INICIO
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+
+            <ui:define name="footer">
+                footer
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
