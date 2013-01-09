@@ -1,3 +1,26 @@
 #container{
     margin-top: 60px;
 }
+#content-inicio h1{
+    font-size: 72px;
+    line-height: 72px;
+    text-align: center;
+}
+#content-inicio h4{
+    text-align: center;
+    color: #999999;
+    padding-top: 20px;
+    font-weight: lighter;
+    font-size: 24px;
+}
+#footer{
+    text-align: center;
+    font-size: 10px;
+    color: #999999;
+}
+#lbl-bienvenida{
+    font-weight: lighter;
+    font-size: 16px;
+    color: #333;
+    text-align: center;
+}
