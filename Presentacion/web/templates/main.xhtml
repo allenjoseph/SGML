@@ -11,6 +11,7 @@
         <h:outputScript name="jquery/jquery.min.js"/>
         <h:outputScript name="jquery/jquery-ui.min.js"/>
         <h:outputScript name="bootstrap/js/bootstrap.min.js"/>
+        <link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'/>
         <title>SGML</title>
     </h:head>
 
@@ -23,9 +24,17 @@
         <div id="container">
             <ui:insert name="container">Container</ui:insert>
         </div>
-        
-        <div id="footer">
-            <ui:insert name="footer">SGML - 1.0</ui:insert>
+
+        <div id="footer">            
+            <ui:insert name="footer">
+                <div class="container-fluid">
+                    <div class="row-fluid">
+                        <div id="content-inicio" class="span12">
+                            <hr/>SGML
+                        </div>
+                    </div>
+                </div>
+            </ui:insert>
         </div>
 
     </h:body>
