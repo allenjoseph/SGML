@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"                
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="./templates/main.xhtml">
+
+    <ui:define name="container">
+        <div id="content-inicio" class="span12">
+            <div>
+                <h1>${msg["titulo.sgml"]}</h1>
+                <h4>${msg["titulo.Industrial"]} - ${msg["titulo.Universidad"]}</h4>
+                <hr/>
+            </div>
+            <div class="row-fluid">
+                <div class="span8">
+                    <div class="well">
+                        <p id="lbl-bienvenida">${msg["parrafo.bienvenida"]}</p>
+                    </div>
+                </div>
+                <div class="span4">
+                    <div class="well celeste">
+                        <h:form>
+                            <div class="control-group">
+                                <div class="control-label">
+                                    ${msg['label.user']}
+                                </div>
+                                <div class="controls">
+                                    <input
+                                        id="input-usuario"
+                                        type="email"
+                                        required="true"
+                                        value="#{usuarioManager.usuario.nombre}"                                        
+                                        placeholder="Ingrese su email"
+                                        class="input-block-level"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="control-label">
+                                    ${msg['label.pass']}
+                                </div>
+                                <div class="controls">
+                                    <input
+                                        id="input-password"
+                                        type="password"
+                                        required="true"
+                                        value="#{usuarioManager.usuario.password}"
+                                        placeholder="Ingrese su contraseña"
+                                        class="input-block-level"/>
+                                </div>
+                            </div>
+                            <div class="control-group error">
+                                <div class="help-block error">
+                                    #{sgmlManager.mensaje}
+                                </div>
+                            </div>
+                            <h:commandButton 
+                                type="submit" 
+                                action="#{usuarioManager.varificarUsuario}" 
+                                value="${msg['accion.login']}" 
+                                class="btn btn-block btn-success" />
+                        </h:form>
+                        <a href="#!" id="boton-registro">¡Registrate aquí!</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal-signup" class="modal hide fade">
+            <div class="modal-header">
+                <h3>Es tu primera vez en el SGML?</h3>
+            </div>
+            <div class="modal-body">     
+                <ul class="nav nav-pills" id="navbar-usuario">
+                    <li class="active"><a href="#registro-alumno">Soy Alumno</a></li>
+                    <li><a href="#registro-egresado">Soy Egresado</a></li>
+                    <li><a href="#registro-empresa">Soy Empresa</a></li>
+                </ul>
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="registro-alumno">
+                        <div class="well celeste">
+                            <strong>Sólo necesitamos unos datos más sobre tí y todo queradá listo!</strong><br/><br/>
+                            <div class="form-horizontal">
+                                <div class="control-group">
+                                    <label class="control-label">Tus nombres</label>
+                                    <div class="controls">
+                                        <input type="text" placeholder="Ingresa tus nombres"/>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Tus apellidos</label>
+                                    <div class="controls">
+                                        <input type="text" placeholder="Ingresa tus apellidos"/>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Tu codigo universitario</label>
+                                    <div class="controls">
+                                        <input type="text" placeholder="Ingresa tu codigo universitario"/>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Que estudias?</label>
+                                    <div class="controls">
+                                        <select>
+                                            <option>Ingenieria Agroindustrial</option>
+                                            <option>Ingenieria Informática</option>
+                                            <option>Ingenieria Industrial</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="control-group error">
+                                    <div class="controls">
+                                        <button class="btn btn-success btn-small">Registarme y continuar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                                        
+                    </div>
+                    <div class="tab-pane" id="registro-egresado">
+                        <div  class="well celeste">
+                            <strong>Sólo necesitamos unos datos más sobre tí y todo queradá listo!</strong><br/><br/>
+                            <div class="form-horizontal">
+                                <div class="control-group">
+                                    <label class="control-label">Tus nombres</label>
+                                    <div class="controls">
+                                        <input type="text" placeholder="Ingresa tus nombres"/>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Tus apellidos</label>
+                                    <div class="controls">
+                                        <input type="text" placeholder="Ingresa tus apellidos"/>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">tu DNI</label>
+                                    <div class="controls">
+                                        <input type="text" placeholder="Ingresa tu codigo universitario"/>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Eres?</label>
+                                    <div class="controls">
+                                        <select>
+                                            <option>Ingeniero Agroindustrial</option>
+                                            <option>Ingeniero Informática</option>
+                                            <option>Ingeniero Industrial</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="control-group error">
+                                    <div class="controls">
+                                        <button class="btn btn-success btn-small">Registarme y continuar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                                        
+                    </div>
+                    <div class="tab-pane" id="registro-empresa">
+                        <div class="well celeste">
+                            <strong>Muy pronto estará lista esta característica!</strong><br/>
+                            <strong>Disculpe las molestias.</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn" data-dismiss="modal">${msg["accion.volver"]}</a>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>
+
