@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <h:head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <h:outputStylesheet name="bootstrap/css/bootstrap.min.css" />
+        <h:outputStylesheet name="bootstrap/css/bootstrap-responsive.min.css"/>
+        <h:outputStylesheet name="css/sgml.css"/>
+        <h:outputScript name="jquery/jquery.min.js"/>
+        <h:outputScript name="jquery/jquery-ui.min.js"/>
+        <h:outputScript name="bootstrap/js/bootstrap.min.js"/>
+        <h:outputScript name="js/inicio.js"/>
+        <link href="http://fonts.googleapis.com/css?family=Ubuntu:300" rel="stylesheet" type="text/css"/>
+        <title>SGML</title>
+    </h:head>
+
+    <h:body>
+        
+        <div id="navbar">
+            <ui:insert name="navbar">
+                <div class="navbar navbar-fixed-top">
+                    <div class="navbar-inner">
+                        <div class="container">
+                            <a class="brand" href="#!">SGML</a>
+                            <button type="button" class="btn btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button> 
+                            <div class="nav-collapse collapse pull-right" style="height: 0px; ">
+                                <ul class="nav">
+                                    <li class="active">
+                                        <a href="#">${msg["nav.inicio"]}</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">${msg["nav.alumno"]}</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">${msg["nav.empresa"]}</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">${msg["nav.contacto"]}</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">${msg["nav.acerca"]}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ui:insert>
+        </div>
+
+        <div id="container">
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <ui:insert name="container">
+                    </ui:insert>
+                </div>
+            </div>
+        </div>
+
+        <div id="footer">            
+            <ui:insert name="footer">
+                <div class="container-fluid">
+                    <div class="row-fluid">
+                        <div id="content-inicio" class="span12">
+                            <hr/>${msg['footer']}
+                        </div>
+                    </div>
+                </div>
+            </ui:insert>
+        </div>
+
+    </h:body>
+
+</html>
