@@ -30,7 +30,7 @@
                                         id="input-usuario"
                                         type="email"
                                         required="true"
-                                        value="#{usuarioManager.usuario.nombre}"                                        
+                                        value="#{verificacionesManager.usuario.nombre}"                                        
                                         placeholder="Ingrese su email"
                                         class="input-block-level"/>
                                 </div>
@@ -44,21 +44,23 @@
                                         id="input-password"
                                         type="password"
                                         required="true"
-                                        value="#{usuarioManager.usuario.password}"
+                                        value="#{verificacionesManager.usuario.password}"
                                         placeholder="Ingrese su contraseña"
                                         class="input-block-level"/>
                                 </div>
                             </div>
                             <div class="control-group error">
                                 <div class="help-block error">
-                                    #{sgmlManager.mensaje}
+                                    <h:outputText id="msg-error-login" value="#{verificacionesManager.mensaje}"/>                                    
                                 </div>
                             </div>
                             <h:commandButton 
                                 type="submit" 
-                                action="#{usuarioManager.varificarUsuario}" 
+                                action="#{verificacionesManager.verificacionLogin}" 
                                 value="${msg['accion.login']}" 
-                                class="btn btn-block btn-success" />
+                                class="btn btn-block btn-success">
+                                <f:ajax render="msg-error-login"/>
+                            </h:commandButton>
                         </h:form>
                         <a href="#!" id="boton-registro">¡Registrate aquí!</a>
                     </div>
