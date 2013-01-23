@@ -28,7 +28,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
     }
 
     @Override
-    public Usuario varificarUsuario(Usuario usuario) {
+    public Usuario verificarUsuario(Usuario usuario) {
         return null;
     }    
 }

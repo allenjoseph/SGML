@@ -29,6 +29,6 @@ public interface UsuarioFacadeLocal {
 
     int count();
 
-    public Usuario varificarUsuario(Usuario usuario);
+    public Usuario verificarUsuario(Usuario usuario);
     
 }
