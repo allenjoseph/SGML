@@ -48,7 +48,6 @@ public class Alumno implements Serializable {
     @Column(name = "Codigo")
     private String codigo;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "FechaCreacion")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaCreacion;
