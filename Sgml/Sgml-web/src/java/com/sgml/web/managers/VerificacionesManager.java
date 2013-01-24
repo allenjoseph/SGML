@@ -6,6 +6,8 @@ package com.sgml.web.managers;
 
 import com.sgml.ejb.persistencia.Usuario;
 import com.sgml.ejb.servicio.UsuarioFacadeLocal;
+import java.io.Serializable;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
@@ -16,7 +18,7 @@ import javax.inject.Named;
  */
 @Named(value = "verificacionesManager")
 @RequestScoped
-public class VerificacionesManager {
+public class VerificacionesManager implements Serializable{
 
     private String mensaje;
     private Usuario usuario;
@@ -27,8 +29,9 @@ public class VerificacionesManager {
     public VerificacionesManager() {
         usuario = new Usuario();
     }
-    
+        
     public void verificacionLogin(){
+        System.out.println(usuario.toString());
         usuario = usuarioFacade.verificarUsuario(usuario);
         if(usuario == null){
             mensaje = "usuario o contraseña erronea";

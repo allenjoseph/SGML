@@ -3,160 +3,137 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"                
                 xmlns:f="http://java.sun.com/jsf/core"
-                template="./templates/main.xhtml">
+                template="./templates/main.xhtml"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:componentes="http://java.sun.com/jsf/composite/componentes">
 
     <ui:define name="container">
         <div id="content-inicio" class="span12">
             <div>
                 <h1>${msg["titulo.sgml"]}</h1>
-                <h4>${msg["titulo.Industrial"]} - ${msg["titulo.Universidad"]}</h4>
+                <h4>${msg["titulo.industrial"]} - ${msg["titulo.universidad"]}</h4>
                 <hr/>
             </div>
             <div class="row-fluid">
                 <div class="span8">
                     <div class="well">
-                        <p id="lbl-bienvenida">${msg["parrafo.bienvenida"]}</p>
+                        <p id="lbl-bienvenida">${msg["mensaje.bienvenida"]}</p>
                     </div>
                 </div>
                 <div class="span4">
                     <div class="well celeste">
                         <h:form>
-                            <div class="control-group">
-                                <div class="control-label">
+                            <div>
+                                <label>
                                     ${msg['label.user']}
-                                </div>
-                                <div class="controls">
-                                    <input
-                                        id="input-usuario"
-                                        type="email"
-                                        required="true"
-                                        value="#{verificacionesManager.usuario.nombre}"                                        
-                                        placeholder="Ingrese su email"
-                                        class="input-block-level"/>
-                                </div>
+                                </label>
+                                <input
+                                    id="input-usuario"
+                                    type="email"
+                                    required="true"
+                                    value="#{verificacionesManager.usuario.nombre}"                                        
+                                    placeholder="Ingrese su email"
+                                    class="input-block-level"/>
                             </div>
-                            <div class="control-group">
-                                <div class="control-label">
+                            <div>
+                                <label>
                                     ${msg['label.pass']}
-                                </div>
-                                <div class="controls">
-                                    <input
-                                        id="input-password"
-                                        type="password"
-                                        required="true"
-                                        value="#{verificacionesManager.usuario.password}"
-                                        placeholder="Ingrese su contraseña"
-                                        class="input-block-level"/>
-                                </div>
+                                </label>
+                                <input
+                                    id="input-password"
+                                    type="password"
+                                    required="true"                                    
+                                    value="#{verificacionesManager.usuario.password}"
+                                    placeholder="Ingrese su contraseña"
+                                    class="input-block-level"/>
                             </div>
                             <div class="control-group error">
-                                <div class="help-block error">
+                                <div class="help-block">
                                     <h:outputText id="msg-error-login" value="#{verificacionesManager.mensaje}"/>                                    
                                 </div>
                             </div>
-                            <h:commandButton 
-                                type="submit" 
-                                action="#{verificacionesManager.verificacionLogin}" 
-                                value="${msg['accion.login']}" 
-                                class="btn btn-block btn-success">
-                                <f:ajax render="msg-error-login"/>
-                            </h:commandButton>
+                            <div>
+                                <h:commandButton 
+                                    type="submit" 
+                                    action="#{verificacionesManager.verificacionLogin}" 
+                                    value="${msg['accion.login']}" 
+                                    class="btn btn-block btn-success">
+                                </h:commandButton>
+                            </div>                            
                         </h:form>
-                        <a href="#!" id="boton-registro">¡Registrate aquí!</a>
+                        <a href="#!" id="boton-registro">${msg["accion.registrate"]}</a>
                     </div>
                 </div>
             </div>
         </div>
         <div id="modal-signup" class="modal hide fade">
             <div class="modal-header">
-                <h3>Es tu primera vez en el SGML?</h3>
+                <h3>${msg["titulo.registro"]}</h3>
             </div>
             <div class="modal-body">     
                 <ul class="nav nav-pills" id="navbar-usuario">
-                    <li class="active"><a href="#registro-alumno">Soy Alumno</a></li>
-                    <li><a href="#registro-egresado">Soy Egresado</a></li>
-                    <li><a href="#registro-empresa">Soy Empresa</a></li>
+                    <li class="active"><a href="#registro-alumno">${msg["nav.registro.alumno"]}</a></li>
+                    <li><a href="#registro-empresa">${msg["nav.registro.empresa"]}</a></li>
                 </ul>
-
                 <div class="tab-content">
                     <div class="tab-pane active" id="registro-alumno">
                         <div class="well celeste">
-                            <strong>Sólo necesitamos unos datos más sobre tí y todo queradá listo!</strong><br/><br/>
-                            <div class="form-horizontal">
-                                <div class="control-group">
-                                    <label class="control-label">Tus nombres</label>
-                                    <div class="controls">
-                                        <input type="text" placeholder="Ingresa tus nombres"/>
-                                    </div>
-                                </div>
-                                <div class="control-group">
-                                    <label class="control-label">Tus apellidos</label>
-                                    <div class="controls">
-                                        <input type="text" placeholder="Ingresa tus apellidos"/>
-                                    </div>
-                                </div>
-                                <div class="control-group">
-                                    <label class="control-label">Tu codigo universitario</label>
-                                    <div class="controls">
-                                        <input type="text" placeholder="Ingresa tu codigo universitario"/>
-                                    </div>
-                                </div>
-                                <div class="control-group">
-                                    <label class="control-label">Que estudias?</label>
-                                    <div class="controls">
-                                        <select>
-                                            <option>Ingenieria Agroindustrial</option>
-                                            <option>Ingenieria Informática</option>
-                                            <option>Ingenieria Industrial</option>
-                                        </select>
-                                    </div>
-                                </div>
+                            <strong>${msg["mensaje.registrarme"]}</strong><br/><br/>
+                            <h:form class="form-horizontal">
+                                <componentes:input 
+                                    id="input-nombres"
+                                    tipo="horizontal" 
+                                    label="Tus nombres" 
+                                    placeholder="Ingresa tus nombres" 
+                                    value="#{registroManager.persona.nombres}"/>
+                                <componentes:input 
+                                    id="input-apellidos"
+                                    tipo="horizontal" 
+                                    label="Tus apellidos" 
+                                    placeholder="Ingresa tus apellidos" 
+                                    value="#{registroManager.persona.apellidos}"/>
+                                <componentes:input 
+                                    id="input-email"
+                                    tipo="horizontal" 
+                                    label="Tu correo electrónico" 
+                                    placeholder="Ingresa tu correo electrónico" 
+                                    value="#{registroManager.persona.email}"/>
+                                <componentes:input 
+                                    id="input-codigo"
+                                    tipo="horizontal" 
+                                    label="Tu codigo universitario" 
+                                    placeholder="Ingresa tu codigo universitario" 
+                                    value="#{registroManager.prueba}"/>
+                                <componentes:select tipo="horizontal" label="Tu carrera" value="profesion"/>
+                                <componentes:input 
+                                    id="input-nickname"
+                                    tipo="horizontal" 
+                                    label="Nickname" 
+                                    placeholder="Ingresa un nombre de usuario"
+                                    value="#{registroManager.usuario.nombre}"/>
+                                <componentes:input 
+                                    id="input-pass"
+                                    tipo="horizontal-pass" 
+                                    label="Contraseña" 
+                                    placeholder="Ingresa una contraseña" 
+                                    value="#{registroManager.usuario.password}"/>  
                                 <div class="control-group error">
-                                    <div class="controls">
-                                        <button class="btn btn-success btn-small">Registarme y continuar</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>                                        
-                    </div>
-                    <div class="tab-pane" id="registro-egresado">
-                        <div  class="well celeste">
-                            <strong>Sólo necesitamos unos datos más sobre tí y todo queradá listo!</strong><br/><br/>
-                            <div class="form-horizontal">
-                                <div class="control-group">
-                                    <label class="control-label">Tus nombres</label>
-                                    <div class="controls">
-                                        <input type="text" placeholder="Ingresa tus nombres"/>
+                                    <div class="help-block">
+                                        <h:outputText id="msg-error-registro" value="#{registroManager.mensaje}"/>                                    
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label">Tus apellidos</label>
                                     <div class="controls">
-                                        <input type="text" placeholder="Ingresa tus apellidos"/>
+                                        <h:commandButton 
+                                            type="submit" 
+                                            action="#{registroManager.registrarAlumno}" 
+                                            value="${msg['accion.registrarme']}" 
+                                            class="btn btn-success btn-small">
+                                            <f:ajax render="msg-error-registro"/>
+                                        </h:commandButton>
                                     </div>
                                 </div>
-                                <div class="control-group">
-                                    <label class="control-label">tu DNI</label>
-                                    <div class="controls">
-                                        <input type="text" placeholder="Ingresa tu codigo universitario"/>
-                                    </div>
-                                </div>
-                                <div class="control-group">
-                                    <label class="control-label">Eres?</label>
-                                    <div class="controls">
-                                        <select>
-                                            <option>Ingeniero Agroindustrial</option>
-                                            <option>Ingeniero Informática</option>
-                                            <option>Ingeniero Industrial</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="control-group error">
-                                    <div class="controls">
-                                        <button class="btn btn-success btn-small">Registarme y continuar</button>
-                                    </div>
-                                </div>
-                            </div>
+                            </h:form>
                         </div>                                        
                     </div>
                     <div class="tab-pane" id="registro-empresa">

@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://java.sun.com/jsf/composite"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="tipo"/>  
+        <cc:attribute name="value"/>
+        <cc:attribute name="label"/>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <c:if test="#{cc.attrs.tipo eq 'horizontal' and cc.attrs.value eq 'profesion'}">
+            <div class="control-group">
+                <label class="control-label">#{cc.attrs.label}</label>
+                <div class="controls">
+                    <select>
+                        <option>Ingenieria Agroindustrial</option>
+                        <option>Ingenieria Informática</option>
+                        <option>Ingenieria Industrial</option>
+                    </select>
+                </div>
+            </div>
+        </c:if>
+    </cc:implementation>
+</html>
