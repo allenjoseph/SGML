@@ -80,43 +80,46 @@
                         <div class="well celeste">
                             <strong>${msg["mensaje.registrarme"]}</strong><br/><br/>
                             <h:form class="form-horizontal">
-                                <componentes:input 
-                                    id="input-nombres"
-                                    tipo="horizontal" 
-                                    label="Tus nombres" 
-                                    placeholder="Ingresa tus nombres" 
-                                    value="#{registroManager.persona.nombres}"/>
-                                <componentes:input 
-                                    id="input-apellidos"
-                                    tipo="horizontal" 
-                                    label="Tus apellidos" 
-                                    placeholder="Ingresa tus apellidos" 
-                                    value="#{registroManager.persona.apellidos}"/>
-                                <componentes:input 
-                                    id="input-email"
-                                    tipo="horizontal" 
-                                    label="Tu correo electrónico" 
-                                    placeholder="Ingresa tu correo electrónico" 
-                                    value="#{registroManager.persona.email}"/>
-                                <componentes:input 
-                                    id="input-codigo"
-                                    tipo="horizontal" 
-                                    label="Tu codigo universitario" 
-                                    placeholder="Ingresa tu codigo universitario" 
-                                    value="#{registroManager.prueba}"/>
-                                <componentes:select tipo="horizontal" label="Tu carrera" value="profesion"/>
-                                <componentes:input 
-                                    id="input-nickname"
-                                    tipo="horizontal" 
-                                    label="Nickname" 
-                                    placeholder="Ingresa un nombre de usuario"
-                                    value="#{registroManager.usuario.nombre}"/>
-                                <componentes:input 
-                                    id="input-pass"
-                                    tipo="horizontal-pass" 
-                                    label="Contraseña" 
-                                    placeholder="Ingresa una contraseña" 
-                                    value="#{registroManager.usuario.password}"/>  
+                                <div class="control-group">
+                                    <div class="control-label">Tus nombres</div>
+                                    <div class="controls">
+                                        <h:inputText value="#{registroManager.persona.nombres}"/>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="control-label">Tus apellidos</div>
+                                    <div class="controls">
+                                        <h:inputText value="#{registroManager.persona.apellidos}"/>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="control-label">Tu correo electrónico</div>
+                                    <div class="controls">
+                                        <h:inputText value="#{registroManager.persona.email}"/>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="control-label">Tu código universitario</div>
+                                    <div class="controls">
+                                        <h:inputText value="#{registroManager.alumno.codigo}"/>
+                                    </div>
+                                </div>
+                                <componentes:select 
+                                    tipo="horizontal"
+                                    label="Tu carrera"
+                                    value="profesion"/>
+                                <div class="control-group">
+                                    <div class="control-label">Nombre de usuario</div>
+                                    <div class="controls">
+                                        <h:inputText value="#{registroManager.usuario.nombre}"/>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="control-label">Contraseña</div>
+                                    <div class="controls">
+                                        <h:inputText value="#{registroManager.usuario.password}"/>
+                                    </div>
+                                </div>
                                 <div class="control-group error">
                                     <div class="help-block">
                                         <h:outputText id="msg-error-registro" value="#{registroManager.mensaje}"/>                                    
@@ -125,11 +128,10 @@
                                 <div class="control-group">
                                     <div class="controls">
                                         <h:commandButton 
-                                            type="submit" 
+                                            type="submit"
                                             action="#{registroManager.registrarAlumno}" 
                                             value="${msg['accion.registrarme']}" 
                                             class="btn btn-success btn-small">
-                                            <f:ajax render="msg-error-registro"/>
                                         </h:commandButton>
                                     </div>
                                 </div>

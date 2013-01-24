@@ -16,7 +16,6 @@ import com.sgml.ejb.servicio.FacultadFacadeLocal;
 import com.sgml.ejb.servicio.PersonaFacadeLocal;
 import com.sgml.ejb.servicio.UniversidadFacadeLocal;
 import com.sgml.ejb.servicio.UsuarioFacadeLocal;
-import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
@@ -27,14 +26,12 @@ import javax.inject.Named;
  */
 @Named(value = "registroManager")
 @RequestScoped
-public class RegistroManager implements Serializable{
+public class RegistroManager {
 
     private Persona persona;
     private Usuario usuario;
     private Alumno alumno;
     private String mensaje;
-    private String prueba;
-    
     @EJB
     private PersonaFacadeLocal personaFacade;
     @EJB
@@ -48,41 +45,34 @@ public class RegistroManager implements Serializable{
     @EJB
     private EscuelaFacadeLocal escuelaFacade;
 
-    /**
-     * Creates a new instance of RegistroManager
-     */
     public RegistroManager() {
         persona = new Persona();
-        alumno = new Alumno();
         usuario = new Usuario();
+        alumno = new Alumno();
     }
 
     public void registrarAlumno() {
-        if (registrarPersona().isEmpty()) {
-            if (registrarUsuario().isEmpty()) {
-                Universidad universidad = universidadFacade.find(1);
-                alumno.setUniversidadId(universidad);
-                Facultad facultad = facultadFacade.find(1);
-                alumno.setFacultadId(facultad);
-                Escuela escuela = escuelaFacade.find(1);
-                alumno.setEscuelaId(escuela);
-                alumno.setUsuarioId(usuario);
-                try {
-                    alumnoFacade.create(alumno);
-                     mensaje = "Gracias por registrarte! Ahora ya puedes ingresar al SGML :)";
-                } catch (Throwable ex) {
-                    mensaje = "Error: " + ex;
-                }               
-            }
+        registrarPersona();
+        registrarUsuario();
+
+        Universidad universidad = universidadFacade.find(1);
+        alumno.setUniversidadId(universidad);
+        Facultad facultad = facultadFacade.find(1);
+        alumno.setFacultadId(facultad);
+        Escuela escuela = escuelaFacade.find(1);
+        alumno.setEscuelaId(escuela);
+        alumno.setUsuarioId(usuario);
+        try {
+            alumnoFacade.create(alumno);
+             mensaje = "Gracias por registrarte! Ahora ya puedes ingresar al SGML :)";
+             System.out.println(mensaje);
+        } catch (Throwable ex) {
+            mensaje = "Error: " + ex;
         }
     }
 
     public String registrarPersona() {
         try {
-            System.out.println(persona.getNombres());
-            System.out.println(persona.getApellidos());
-            System.out.println(persona.getEmail());
-            System.out.println(prueba);
             personaFacade.create(persona);
             mensaje = null;
         } catch (Throwable ex) {
@@ -93,7 +83,7 @@ public class RegistroManager implements Serializable{
 
     public String registrarUsuario() {
         try {
-            usuario.setPersonaId(persona);
+            usuario.setPersonaId(persona); 
             usuarioFacade.create(usuario);
             mensaje = null;
         } catch (Throwable ex) {
@@ -132,13 +122,5 @@ public class RegistroManager implements Serializable{
 
     public void setMensaje(String mensaje) {
         this.mensaje = mensaje;
-    }
-    
-    public String getPrueba() {
-        return prueba;
-    }
-
-    public void setPrueba(String prueba) {
-        this.prueba = prueba;
     }
 }
