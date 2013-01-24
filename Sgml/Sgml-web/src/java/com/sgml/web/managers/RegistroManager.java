@@ -57,50 +57,46 @@ public class RegistroManager {
     }
 
     public void registrarAlumno() {
-        registrarPersona();
-        registrarUsuario();
+        if (registrarPersona()) {
+            if (registrarUsuario()) {
+                Universidad universidad = universidadFacade.find(1);
+                Facultad facultad = facultadFacade.find(1);
+                Escuela escuela = escuelaFacade.find(1);
 
-        alumno.setUsuarioId(usuario);
-        
-        Universidad universidad = universidadFacade.find(1);
-        alumno.setUniversidadId(universidad);
-        Facultad facultad = facultadFacade.find(1);
-        alumno.setFacultadId(facultad);
-        Escuela escuela = escuelaFacade.find(1);
-        alumno.setEscuelaId(escuela);
-        
-        System.out.println(alumno.getUniversidadId());
-        System.out.println(alumno.getFacultadId());
-        System.out.println(alumno.getEscuelaId());
-        System.out.println(alumno.getUsuarioId());
-        try {
-            alumnoFacade.create(alumno);
-             mensaje = "Gracias por registrarte! Ahora ya puedes ingresar al SGML :)";             
-        } catch (Throwable ex) {
-            mensaje = "Error: " + ex;
+                alumno.setUsuarioId(usuario);
+                alumno.setUniversidadId(universidad);
+                alumno.setFacultadId(facultad);
+                alumno.setEscuelaId(escuela);
+
+                try {
+                    alumnoFacade.create(alumno);
+                    mensaje = "Gracias por registrarte! Ahora ya puedes ingresar al SGML :)";
+                } catch (Exception ex) {
+                    mensaje = "Error al registrar Alumno o Egresado. Comuníque este error.";
+                }
+            }
         }
-        System.out.println(mensaje);
     }
 
-    public String registrarPersona() {
+    public boolean registrarPersona() {
         try {
             personaFacade.create(persona);
-            mensaje = null;
-        } catch (Throwable ex) {
-            mensaje = "Error: " + ex;
+        } catch (Exception ex) {
+            mensaje = "Error al registrar Persona Física. Comuníque este error.";
+            return false;
         }
-        return mensaje;
+        return true;
     }
 
-    public String registrarUsuario() {
+    public boolean registrarUsuario() {
         try {
-            usuario.setPersonaId(persona); 
+            usuario.setPersonaId(persona);
             usuarioFacade.create(usuario);
-            mensaje = null;
-        } catch (Throwable ex) {
-            mensaje = "Error: " + ex;
+        } catch (Exception ex) {
+            mensaje = "Error al registrar Usuario. Comuníque este error.";
+            return false;
         }
-        return mensaje;
+        return true;
     }
 
     public Alumno getAlumno() {
