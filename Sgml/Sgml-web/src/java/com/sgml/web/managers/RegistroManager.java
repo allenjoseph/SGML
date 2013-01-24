@@ -16,6 +16,7 @@ import com.sgml.ejb.servicio.FacultadFacadeLocal;
 import com.sgml.ejb.servicio.PersonaFacadeLocal;
 import com.sgml.ejb.servicio.UniversidadFacadeLocal;
 import com.sgml.ejb.servicio.UsuarioFacadeLocal;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
@@ -46,6 +47,10 @@ public class RegistroManager {
     private EscuelaFacadeLocal escuelaFacade;
 
     public RegistroManager() {
+    }
+
+    @PostConstruct
+    public void init() {
         persona = new Persona();
         usuario = new Usuario();
         alumno = new Alumno();
@@ -55,20 +60,26 @@ public class RegistroManager {
         registrarPersona();
         registrarUsuario();
 
+        alumno.setUsuarioId(usuario);
+        
         Universidad universidad = universidadFacade.find(1);
         alumno.setUniversidadId(universidad);
         Facultad facultad = facultadFacade.find(1);
         alumno.setFacultadId(facultad);
         Escuela escuela = escuelaFacade.find(1);
         alumno.setEscuelaId(escuela);
-        alumno.setUsuarioId(usuario);
+        
+        System.out.println(alumno.getUniversidadId());
+        System.out.println(alumno.getFacultadId());
+        System.out.println(alumno.getEscuelaId());
+        System.out.println(alumno.getUsuarioId());
         try {
             alumnoFacade.create(alumno);
-             mensaje = "Gracias por registrarte! Ahora ya puedes ingresar al SGML :)";
-             System.out.println(mensaje);
+             mensaje = "Gracias por registrarte! Ahora ya puedes ingresar al SGML :)";             
         } catch (Throwable ex) {
             mensaje = "Error: " + ex;
         }
+        System.out.println(mensaje);
     }
 
     public String registrarPersona() {
