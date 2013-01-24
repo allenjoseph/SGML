@@ -66,7 +66,7 @@
                 </div>
             </div>
         </div>
-        <div id="modal-signup" class="modal hide fade">
+        <div id="modal-registro" class="modal hide fade">
             <div class="modal-header">
                 <h3>${msg["titulo.registro"]}</h3>
             </div>
@@ -132,6 +132,7 @@
                                             action="#{registroManager.registrarAlumno}" 
                                             value="${msg['accion.registrarme']}" 
                                             class="btn btn-success btn-small">
+                                            <f:ajax execute="@form" render="msg-error-registro"/>
                                         </h:commandButton>
                                     </div>
                                 </div>

@@ -4,7 +4,7 @@
  */
 $(document).ready(function(){
     $("#boton-registro").click(function(){
-        $("#modal-signup").modal({
+        $("#modal-registro").modal({
             "backdrop" : "static",
             "show" : true
         });
@@ -13,7 +13,6 @@ $(document).ready(function(){
     $('#navbar-usuario a').click(function (e) {
         e.preventDefault();
         $(this).tab('show');
-    }) 
-   
+    });   
 });
 

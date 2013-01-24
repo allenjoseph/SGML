@@ -33,13 +33,10 @@ div.celeste{
     color: #333;
     text-align: justify;
 }
-#modal-signup{
-    position: absolute!important;
-}
-#modal-signup div.modal-body strong{
+#modal-registro div.modal-body strong{
     padding-right: 20px;
 }
-#msg-error-registro{
+#modal-registro .help-block{
     text-align: center;
 }
 @media (max-width: 979px) {
