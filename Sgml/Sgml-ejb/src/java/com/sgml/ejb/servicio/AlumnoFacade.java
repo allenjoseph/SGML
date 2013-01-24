@@ -25,6 +25,5 @@ public class AlumnoFacade extends AbstractFacade<Alumno> implements AlumnoFacade
 
     public AlumnoFacade() {
         super(Alumno.class);
-    }
-    
+    }    
 }
