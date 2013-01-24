@@ -14,5 +14,9 @@ $(document).ready(function(){
         e.preventDefault();
         $(this).tab('show');
     });   
+    
+    $("#modal-registro").on('shown', function () {
+        $('input:text:visible:first', this).focus();
+    });
 });
 
