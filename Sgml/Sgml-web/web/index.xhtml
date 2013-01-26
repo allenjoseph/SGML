@@ -83,25 +83,45 @@
                                 <div class="control-group">
                                     <div class="control-label">Tus nombres</div>
                                     <div class="controls">
-                                        <h:inputText class="first" value="#{registroManager.persona.nombres}"/>
+                                        <h:inputText 
+                                            value="#{registroManager.persona.nombres}"
+                                            required="true"
+                                            requiredMessage="Debes ingresar tus nombres.">
+                                            <f:ajax execute="@this" event="blur" render="mensajes"/>
+                                        </h:inputText>
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <div class="control-label">Tus apellidos</div>
                                     <div class="controls">
-                                        <h:inputText value="#{registroManager.persona.apellidos}"/>
+                                        <h:inputText 
+                                            value="#{registroManager.persona.apellidos}"
+                                            required="true"
+                                            requiredMessage="Debes ingresar tus apellidos.">
+                                            <f:ajax execute="@this" event="blur" render="mensajes"/>
+                                        </h:inputText>
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <div class="control-label">Tu correo electrónico</div>
                                     <div class="controls">
-                                        <h:inputText value="#{registroManager.persona.email}"/>
+                                        <h:inputText 
+                                            value="#{registroManager.persona.email}"
+                                            required="true"
+                                            requiredMessage="Debes ingresar tu correo electronico.">
+                                            <f:ajax execute="@this" event="blur" render="mensajes"/>
+                                        </h:inputText>
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <div class="control-label">Tu código universitario</div>
                                     <div class="controls">
-                                        <h:inputText value="#{registroManager.alumno.codigo}"/>
+                                        <h:inputText 
+                                            value="#{registroManager.alumno.codigo}"
+                                            required="true"
+                                            requiredMessage="Debes ingresar tu codigo universitario.">
+                                            <f:ajax execute="@this" event="blur" render="mensajes"/>
+                                        </h:inputText>
                                     </div>
                                 </div>
                                 <componentes:select 
@@ -111,17 +131,28 @@
                                 <div class="control-group">
                                     <div class="control-label">Nombre de usuario</div>
                                     <div class="controls">
-                                        <h:inputText value="#{registroManager.usuario.nombre}"/>
+                                        <h:inputText 
+                                            value="#{registroManager.usuario.nombre}"
+                                            required="true"
+                                            requiredMessage="Ingresa un nombre para tu usuario.">
+                                            <f:ajax execute="@this" event="blur" render="mensajes"/>
+                                        </h:inputText>
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <div class="control-label">Contraseña</div>
                                     <div class="controls">
-                                        <h:inputText value="#{registroManager.usuario.password}"/>
+                                        <h:inputText 
+                                            value="#{registroManager.usuario.password}"
+                                            required="true"
+                                            requiredMessage="Ingresa una contraseña para tu usuario.">
+                                            <f:ajax execute="@this" event="blur" render="mensajes"/>
+                                        </h:inputText>
                                     </div>
                                 </div>
                                 <div class="control-group error">
                                     <div class="help-block">
+                                        <h:messages id="mensajes" style="list-style: none;"/>
                                         <h:outputText id="msg-error-registro" value="#{registroManager.mensaje}"/>                                    
                                     </div>
                                 </div>
@@ -132,7 +163,7 @@
                                             action="#{registroManager.registrarAlumno}" 
                                             value="${msg['accion.registrarme']}" 
                                             class="btn btn-success btn-small">
-                                            <f:ajax execute="@form" render="msg-error-registro"/>
+                                            <f:ajax execute="@form" render="mensajes"/>
                                         </h:commandButton>
                                     </div>
                                 </div>

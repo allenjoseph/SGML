@@ -56,7 +56,7 @@ public class RegistroManager {
         alumno = new Alumno();
     }
 
-    public void registrarAlumno() {
+    public String registrarAlumno() {
         if (registrarPersona()) {
             if (registrarUsuario()) {
                 Universidad universidad = universidadFacade.find(1);
@@ -76,6 +76,7 @@ public class RegistroManager {
                 }
             }
         }
+        return mensaje;
     }
 
     public boolean registrarPersona() {
