@@ -17,12 +17,4 @@ public class SgmlManager {
     
     public SgmlManager() {
     }
-    
-    public boolean registrarAlumno(){
-        return true;
-    }
-    
-    public boolean registrarEgresado(){
-        return true;
-    }  
 }

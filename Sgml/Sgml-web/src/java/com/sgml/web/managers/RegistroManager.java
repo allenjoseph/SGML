@@ -92,6 +92,7 @@ public class RegistroManager {
     public boolean registrarUsuario() {
         try {
             usuario.setPersonaId(persona);
+            usuario.setTipo(1);
             usuarioFacade.create(usuario);
         } catch (Exception ex) {
             mensaje = "Error al registrar Usuario. Comuníque este error.";

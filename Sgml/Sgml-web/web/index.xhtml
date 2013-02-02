@@ -27,37 +27,32 @@
                                 <label>
                                     ${msg['label.user']}
                                 </label>
-                                <input
-                                    id="input-usuario"
-                                    type="email"
-                                    required="true"
-                                    value="#{verificacionesManager.usuario.nombre}"                                        
-                                    placeholder="Ingrese su email"
-                                    class="input-block-level"/>
+                                <h:inputText 
+                                    value="#{loginManager.nombre}"
+                                    class="input-block-level">
+                                </h:inputText>
                             </div>
                             <div>
                                 <label>
                                     ${msg['label.pass']}
                                 </label>
-                                <input
-                                    id="input-password"
-                                    type="password"
-                                    required="true"                                    
-                                    value="#{verificacionesManager.usuario.password}"
-                                    placeholder="Ingrese su contraseña"
-                                    class="input-block-level"/>
+                                <h:inputSecret
+                                    value="#{loginManager.password}"
+                                    class="input-block-level">
+                                </h:inputSecret>
                             </div>
                             <div class="control-group error">
                                 <div class="help-block">
-                                    <h:outputText id="msg-error-login" value="#{verificacionesManager.mensaje}"/>                                    
+                                    <h:outputText id="msg-error-login" value="#{loginManager.mensaje}"/>                                    
                                 </div>
                             </div>
                             <div>
                                 <h:commandButton 
                                     type="submit" 
-                                    action="#{verificacionesManager.verificacionLogin}" 
+                                    action="#{loginManager.verificarLogin}" 
                                     value="${msg['accion.login']}" 
                                     class="btn btn-block btn-success">
+                                    <f:ajax execute="@form" render="msg-error-login"/>
                                 </h:commandButton>
                             </div>                            
                         </h:form>
@@ -119,7 +114,8 @@
                                         <h:inputText 
                                             value="#{registroManager.alumno.codigo}"
                                             required="true"
-                                            requiredMessage="Debes ingresar tu codigo universitario.">
+                                            requiredMessage="Debes ingresar tu codigo universitario."
+                                            maxlength="10">
                                             <f:ajax execute="@this" event="blur" render="mensajes"/>
                                         </h:inputText>
                                     </div>
@@ -142,12 +138,12 @@
                                 <div class="control-group">
                                     <div class="control-label">Contraseña</div>
                                     <div class="controls">
-                                        <h:inputText 
+                                        <h:inputSecret
                                             value="#{registroManager.usuario.password}"
                                             required="true"
                                             requiredMessage="Ingresa una contraseña para tu usuario.">
                                             <f:ajax execute="@this" event="blur" render="mensajes"/>
-                                        </h:inputText>
+                                        </h:inputSecret>
                                     </div>
                                 </div>
                                 <div class="control-group error">
@@ -163,7 +159,7 @@
                                             action="#{registroManager.registrarAlumno}" 
                                             value="${msg['accion.registrarme']}" 
                                             class="btn btn-success btn-small">
-                                            <f:ajax execute="@form" render="mensajes"/>
+                                            <f:ajax execute="@form" render="msg-error-registro"/>
                                         </h:commandButton>
                                     </div>
                                 </div>
