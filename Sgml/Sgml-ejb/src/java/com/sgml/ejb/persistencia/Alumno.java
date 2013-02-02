@@ -20,6 +20,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -44,7 +45,8 @@ public class Alumno implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 10)
+    @Size(min = 1, max = 10, message="El C.U. debe tener como máximo 10 digitos.")
+    @Pattern(regexp="|^\\d{10}$|", message="El C.U. no puede contener letras.")
     @Column(name = "Codigo")
     private String codigo;
     @Basic(optional = false)

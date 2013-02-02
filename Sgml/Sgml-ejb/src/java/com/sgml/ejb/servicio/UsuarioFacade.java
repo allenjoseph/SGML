@@ -8,6 +8,7 @@ import com.sgml.ejb.persistencia.Usuario;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,7 +29,16 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
     }
 
     @Override
-    public Usuario verificarUsuario(Usuario usuario) {
-        return null;
+    public Usuario verificarUsuario(String nombre, String password) {
+        Query query = em.createNamedQuery("Usuario.findByNombreAndPassword");
+        query.setParameter("nombre", nombre);
+        query.setParameter("password", password);
+
+        try {
+            Object result = query.getSingleResult();
+            return (Usuario)result;
+        } catch (Exception e) {
+            return null;
+        }
     }    
 }

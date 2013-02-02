@@ -18,6 +18,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -48,30 +49,31 @@ public class Persona implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 100)
+    @Size(min = 1, max = 100, message="Nombre demasiado grande.")
     @Column(name = "Nombres")
     private String nombres;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 100)
+    @Size(min = 1, max = 100, message="Apellido demasiado grande.")
     @Column(name = "Apellidos")
     private String apellidos;
-    @Size(max = 10)
+    @Size(max = 8, message="DNI debe contener 8 digitos.")
+    @Pattern(regexp="|^\\d{9}$|", message="DNI no puede contener letras.")
     @Column(name = "DNI")
     private String dni;
-    @Size(max = 250)
+    @Size(max = 250, message="Direccion demasiado grande.")
     @Column(name = "Direccion")
     private String direccion;
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Correo electrónico no válido")//if the field contains email address consider using this annotation to enforce field validation
+    @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Correo electrónico no válido")
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
     @Column(name = "Email")
     private String email;
-    @Size(max = 10)
+    @Size(max = 10, message="Telefono debe contener 10 digitos como máximo.")
     @Column(name = "Telefono")
     private String telefono;
-    @Size(max = 10)
+    @Size(max = 10, message="Celular debe contener 10 digitos como máximo.")
     @Column(name = "Celular")
     private String celular;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "personaId")

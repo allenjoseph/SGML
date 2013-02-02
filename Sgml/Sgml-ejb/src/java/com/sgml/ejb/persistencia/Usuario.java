@@ -35,7 +35,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
     @NamedQuery(name = "Usuario.findById", query = "SELECT u FROM Usuario u WHERE u.id = :id"),
     @NamedQuery(name = "Usuario.findByNombre", query = "SELECT u FROM Usuario u WHERE u.nombre = :nombre"),
-    @NamedQuery(name = "Usuario.findByPassword", query = "SELECT u FROM Usuario u WHERE u.password = :password")})
+    @NamedQuery(name = "Usuario.findByPassword", query = "SELECT u FROM Usuario u WHERE u.password = :password"),
+    @NamedQuery(name = "Usuario.findByNombreAndPassword", query="SELECT u FROM Usuario u WHERE u.nombre = :nombre AND u.password = :password")})   
 public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -53,6 +54,10 @@ public class Usuario implements Serializable {
     @Size(min = 1, max = 20)
     @Column(name = "Password")
     private String password;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "Tipo")
+    private int tipo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioId")
     private Collection<Empresa> empresaCollection;
     @JoinColumn(name = "PersonaId", referencedColumnName = "Id")
@@ -98,6 +103,13 @@ public class Usuario implements Serializable {
         this.password = password;
     }
 
+    public int getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
+    }
     @XmlTransient
     public Collection<Empresa> getEmpresaCollection() {
         return empresaCollection;

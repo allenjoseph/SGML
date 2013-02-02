@@ -29,6 +29,6 @@ public interface UsuarioFacadeLocal {
 
     int count();
 
-    public Usuario verificarUsuario(Usuario usuario);
+    Usuario verificarUsuario(String nombre, String password);
     
 }
